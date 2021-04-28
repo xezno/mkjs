@@ -49,7 +49,7 @@ window.ItemBox = function(obji, scene) {
 						t.mode = 1;
 						t.time = 0;
 						ok.items.getItem(null); //todo: specific item from some
-						ok.controller.rumble();
+						ok.controller.rumble(100, 1.0, 1.0);
 						break;
 					}
 				}

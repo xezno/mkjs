@@ -699,6 +699,14 @@ window.Kart = function(pos, angle, speed, kartN, charN, controller, scene) {
 					vec3.add(k.vel, k.vel, vec3.scale([], k.kartColVel, k.kartColTimer/10))
 				}
 				*/
+				
+				if (groundEffect != 0) {
+					let t = Math.min(1, Math.max(0, (vec3.length(k.vel) / MAXSPEED)));
+					let strength = lerp(0, 0.1, t);
+					if (strength > 0.01)
+						k.controller.rumble(50, strength, 0);
+					console.log(strength);
+				}
 			}
 
 			if (k.kartColTimer > 0) k.kartColTimer--;
@@ -1241,7 +1249,7 @@ window.Kart = function(pos, angle, speed, kartN, charN, controller, scene) {
 				else
 					setWheelParticles(particle, 0);
 
-				k.controller.rumble();
+				k.controller.rumble(100, 1.0, 1.0);
 			}
 			if (!onGround && !stick) {
 				groundAnim = 0;

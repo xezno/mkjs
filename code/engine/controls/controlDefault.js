@@ -25,7 +25,7 @@ window.controlDefault = function() {
 	this.fetchInput = fetchInput;
 	this.rumble = rumble;
 
-	function rumble(duration = 100, weakMagnitude = 1.0, strongMagnitude = 1.0) {
+	function rumble(duration, weakMagnitude, strongMagnitude) {
 		//basic rumble logic
 		var gamepads = navigator.getGamepads();
 		var useGamepad = gamepads[0] != undefined;
