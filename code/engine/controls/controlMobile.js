@@ -18,6 +18,9 @@ window.controlMobile = function() {
 		thisObj.kart = k;
 	}
 	this.fetchInput = fetchInput;
+	this.rumble = rumble;
+
+	function rumble() { }
 
 	function searchForTouch(rect) { //{touch: Touch, enterLeave: number} 1 is enter, leave is 2,
 		for (var i=0; i<touches.length; i++) {
