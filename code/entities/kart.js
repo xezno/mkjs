@@ -321,14 +321,18 @@ window.Kart = function(pos, angle, speed, kartN, charN, controller, scene) {
 		k.lastInput = input;
 		k.items.update(input);
 
-		if (input.turn > 0.3) {
-			if (k.driveAnimF > 0) k.driveAnimF--;
-		} else if (input.turn < -0.3) {
-			if (k.driveAnimF < 28) k.driveAnimF++;
+		let targetF = k.driveAnimF;
+		if (input.turn > 0.01) {
+			// 14 to 0
+			targetF = 14 * (1.0 - input.turn);
+		} else if (input.turn < -0.01) {
+			// 14 to 28
+			targetF = 14 + (14 * -input.turn);
 		} else {
-			if (k.driveAnimF > 14) k.driveAnimF--;
-			else if (k.driveAnimF < 14) k.driveAnimF++;
+			// no turn, revert to 14
+			targetF = 14;
 		}
+		k.driveAnimF = lerp(k.driveAnimF, targetF, 0.5);
 
 		//update sounds
 
@@ -1268,5 +1272,9 @@ window.Kart = function(pos, angle, speed, kartN, charN, controller, scene) {
 			vec3.add(pos, pos, vec3.scale(vec3.create(), pvel, dat.t));
 		}
 		
+	}
+
+	function lerp(a, b, t) {
+		return (1 - t) * a + t * b;
 	}
 }
