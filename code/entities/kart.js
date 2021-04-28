@@ -1000,6 +1000,8 @@ window.Kart = function(pos, angle, speed, kartN, charN, controller, scene) {
 				if (dist < 16) {
 					kartBounce(ok);
 					ok.kartBounce(k);
+					k.controller.rumble(100, 0.25, 1.0);
+					ok.controller.rumble(100, 0.25, 1.0);
 				}
 			}
 		}
