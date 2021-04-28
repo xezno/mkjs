@@ -63,7 +63,7 @@ window.devScene = function(course, wsInstance, res) {
 
 	function setUpCourse(mainNarc, texNarc, course) {
 		var chars = [];
-		chars.push({charN:mchar, kartN:mkart, controller:getPlayerControls(), raceCam:true, extraParams:[{k:"name", v:"single"}, {k:"active", v:true}]});
+		chars.push({charN:mchar, kartN:mkart, controller:playerControls, raceCam:true, extraParams:[{k:"name", v:"single"}, {k:"active", v:true}]});
 
 		t.activeScene = new courseScene(mainNarc, texNarc, course, chars, {}, res);
 

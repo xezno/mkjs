@@ -314,7 +314,7 @@ window.nitroRender = new function() {
 	this.resetShadOff = function() {
 		var shader = this.nitroShader;
 		gl.useProgram(this.nitroShader);
-		gl.uniform1f(shader.shadOffUniform, 0.0005+((mobile)?0.0005:0));
+		gl.uniform1f(shader.shadOffUniform, 0.0005+((isMobile)?0.0005:0));
 		gl.uniform1f(shader.farShadOffUniform, 0.0020);
 	}
 
