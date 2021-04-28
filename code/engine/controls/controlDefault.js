@@ -13,7 +13,6 @@ function getPlayerControls() {
 }
 
 window.controlDefault = function() {
-
 	var thisObj = this;
 	this.local = true;
 	var kart;
@@ -22,19 +21,41 @@ window.controlDefault = function() {
 		kart = k;
 		thisObj.kart = k;
 	}
+
 	this.fetchInput = fetchInput;
 
 	function fetchInput() {
-		return {
-			accel: keysArray[88], //x
-			decel: keysArray[90], //z
-			drift: keysArray[83], //s
-			item: keysArray[65], //a
+		// there aren't any proper events for gamepad
+		// inputs, so this kinda stinks... too bad!
+		var gamepads = navigator.getGamepads();
+		var useGamepad = gamepads[0] != undefined;
 
-			//-1 to 1, intensity.
-			turn: (keysArray[37]?-1:0)+(keysArray[39]?1:0),
-			airTurn: (keysArray[40]?-1:0)+(keysArray[38]?1:0) //air excitebike turn, item fire direction
-		};
+		if (useGamepad) {
+			var gamepad = gamepads[0];
+			
+			// binds are for xbsx controller (should also work for xbone / x360)
+			return {
+				accel: gamepad.buttons[1].pressed,
+				drift: gamepad.buttons[5].pressed,
+				item: gamepad.buttons[2].pressed || gamepad.buttons[4].pressed,
+				decel: gamepad.buttons[0].pressed,
+
+				turn: gamepad.axes[0],
+				airTurn: gamepad.axes[2]
+			}
+		}
+		else {
+			return {
+				accel: keysArray[88], //x
+				decel: keysArray[90], //z
+				drift: keysArray[83], //s
+				item: keysArray[65], //a
+	
+				//-1 to 1, intensity.
+				turn: (keysArray[37]?-1:0)+(keysArray[39]?1:0),
+				airTurn: (keysArray[40]?-1:0)+(keysArray[38]?1:0) //air excitebike turn, item fire direction
+			};
+		}
 	}
 
 }
