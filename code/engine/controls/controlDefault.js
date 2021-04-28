@@ -1,7 +1,7 @@
 //
 // controlDefault.js
 //--------------------
-// Provides default (keyboard) controls for kart. In future there will be an AI controller and default will support gamepad.
+// Provides default keyboard & gamepad controls for kart.
 // by RHY3756547
 //
 // includes: main.js
