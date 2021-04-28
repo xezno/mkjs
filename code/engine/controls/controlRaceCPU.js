@@ -46,6 +46,9 @@ window.controlRaceCPU = function(nkm) {
 	var destPoint;
 
 	var item = false;
+	
+	this.rumble = rumble;
+	function rumble() {}
 
 	function fetchInput() {
 		//basically as a cpu, we're really dumb and need a constant supply of points to drive to.

@@ -332,7 +332,7 @@ window.Kart = function(pos, angle, speed, kartN, charN, controller, scene) {
 			// no turn, revert to 14
 			targetF = 14;
 		}
-		k.driveAnimF = lerp(k.driveAnimF, targetF, 0.5);
+		k.driveAnimF = lerp(k.driveAnimF, targetF, 0.25);
 
 		//update sounds
 
@@ -542,6 +542,7 @@ window.Kart = function(pos, angle, speed, kartN, charN, controller, scene) {
 							}
 						}
 						if (k.drifting) {
+							k.controller.rumble(50, 0.5, 0);
 
 							if (!boosting) {
 								if (k.speed <= top) {
@@ -787,6 +788,8 @@ window.Kart = function(pos, angle, speed, kartN, charN, controller, scene) {
 		if (k.damageType >= damageType) {
 			return; //we are already damaged
 		}
+		k.controller.rumble(500);
+
 		//TODO: check invuln state
 		k.specialControlHandler = damagedControls;
 		playCharacterSound((damageType == 0) ? 1 : 0);
@@ -1237,6 +1240,8 @@ window.Kart = function(pos, angle, speed, kartN, charN, controller, scene) {
 					clearWheelParticles(0);
 				else
 					setWheelParticles(particle, 0);
+
+				k.controller.rumble();
 			}
 			if (!onGround && !stick) {
 				groundAnim = 0;

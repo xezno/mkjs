@@ -23,6 +23,21 @@ window.controlDefault = function() {
 	}
 
 	this.fetchInput = fetchInput;
+	this.rumble = rumble;
+
+	function rumble(duration = 100, weakMagnitude = 1.0, strongMagnitude = 1.0) {
+		//basic rumble logic
+		var gamepads = navigator.getGamepads();
+		var useGamepad = gamepads[0] != undefined;
+		if (useGamepad) {
+			gamepads[0].vibrationActuator.playEffect("dual-rumble", {
+				startDelay: 0,
+				duration,
+				weakMagnitude,
+				strongMagnitude
+			});
+		}
+	}
 
 	function fetchInput() {
 		// there aren't any proper events for gamepad
@@ -32,6 +47,14 @@ window.controlDefault = function() {
 
 		if (useGamepad) {
 			var gamepad = gamepads[0];
+
+			// Deadzones
+			var turn = gamepad.axes[0];
+			var airTurn = gamepad.axes[2];
+			if (Math.abs(turn) < 0.1)
+				turn = 0;
+			if (Math.abs(airTurn) < 0.1)
+				airTurn = 0;
 			
 			// binds are for xbsx controller (should also work for xbone / x360)
 			return {
@@ -40,8 +63,8 @@ window.controlDefault = function() {
 				item: gamepad.buttons[2].pressed || gamepad.buttons[4].pressed,
 				decel: gamepad.buttons[0].pressed,
 
-				turn: gamepad.axes[0],
-				airTurn: gamepad.axes[2]
+				turn,
+				airTurn
 			}
 		}
 		else {

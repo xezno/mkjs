@@ -22,6 +22,9 @@ window.controlNetwork = function() {
 		t.kart = k;
 	}
 	this.fetchInput = fetchInput;
+	this.rumble = rumble;
+
+	function rumble() {}
 
 	function fetchInput() {
 		//local controllers generally just return input and handle items - the network controller restores kart data from the stream sent from the server. Obviously this data needs to be verified by the server...
