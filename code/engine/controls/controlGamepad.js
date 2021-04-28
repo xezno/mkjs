@@ -53,7 +53,7 @@ window.controlGamepad = function() {
 		return {
 			accel: gamepad.buttons[1].pressed,
 			drift: gamepad.buttons[5].pressed,
-			item: gamepad.buttons[2].pressed || gamepad.buttons[4].pressed,
+			item: gamepad.buttons[3].pressed || gamepad.buttons[4].pressed,
 			decel: gamepad.buttons[0].pressed,
 
 			turn,
