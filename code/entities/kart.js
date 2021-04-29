@@ -314,7 +314,13 @@ window.Kart = function(pos, angle, speed, kartN, charN, controller, scene) {
 			if (++groundAnim >= hitGroundAnim.length) groundAnim = -1;
 		}
 
+		var prevOnGround = onGround;
 		onGround = (k.airTime < 5);
+
+		if (onGround && !prevOnGround) {
+			//landed, rumble
+			k.controller.rumble(250, 1.0, 1.0);
+		}
 
 		kartAnim = (kartAnim+1)%8;
 		var input = k.controller.fetchInput();
