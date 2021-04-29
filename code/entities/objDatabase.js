@@ -68,7 +68,7 @@ window.objDatabase = new (function(){
 		t[0x0154] = ObjDecor; //rainbow star
 		t[0x0155] = ObjDecor; 
 		t[0x0156] = ObjDecor; 
-		t[0x0157] = ObjDecor; 
+		t[0x0157] = ObjPianta; //pianta
 
 		t[0x019C] = ObjTruck;
 		t[0x019A] = ObjCar;
