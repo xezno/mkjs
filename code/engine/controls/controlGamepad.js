@@ -43,7 +43,7 @@ window.controlGamepad = function() {
 
 		// Deadzones
 		var turn = gamepad.axes[0];
-		var airTurn = gamepad.axes[2];
+		var airTurn = -gamepad.axes[1]; // Inverse Y
 		if (Math.abs(turn) < 0.1)
 			turn = 0;
 		if (Math.abs(airTurn) < 0.1)
