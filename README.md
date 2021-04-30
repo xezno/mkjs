@@ -26,13 +26,13 @@ The base game mostly works. A lot of the grunt work is done - the current setup 
 - Work in progress Kart vs. Moving object physics (see Tick Tock Clock, Bowser's Castle DS)
 - Functional AI karts that follow the same waypoints as MKDS AI. (battle and race AI modes)
 - Content system for work in progress course objects, eg. routed car obstacles, moving platforms.
+- Particle effects format reader and renderer.
 
 # Possible Future
 - UI engine
 - Race Logic (checkpoints, lap count, lap tracking, race completion...)
 - All course obstacles (enemies, bridge in delfino)
 - Items & damage
-- Particle effects format reader and renderer (no idea how these formats work).
 - Custom Menus
 - Battle Mode & Mission Mode
 - Multiplayer (custom courses? >8 players?)

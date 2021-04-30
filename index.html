@@ -209,38 +209,10 @@
 					osc.donezo = true;
 				}
 			});
-			//mainScene = new clientScene("ws://192.168.1.13:8081", 0, res)
+
 			mainScene = new singleScene("mkds/"+window.prompt("Select a course to load. (0 to 31, eg rainbow road = 15)"), 0, res)
 
-
-			//load course
-			/*var cDir = MKDSCONST.COURSEDIR+MKDSCONST.COURSES[window.prompt("Select a course to load. (0 to 31, eg rainbow road = 15)")]
-
-			//var cDir = MKDSCONST.COURSEDIR+MKDSCONST.COURSES[1];
-
-			var mainNarc = new narc(lz77.decompress(files["snow_course.carc"]));
-			var texNarc = new narc(lz77.decompress(files["snow_courseTex.carc"]));
-
-			//var mainNarc = new narc(lz77.decompress(gameROM.getFile(cDir+".carc")));
-			//var texNarc = new narc(lz77.decompress(gameROM.getFile(cDir+"Tex.carc")));
-
-			var chars = [];
-			for (var i=0; i<31; i++) {
-				chars.push({charN:Math.floor(Math.random()*12), kartN:Math.floor(Math.random()*0x24), controller:controlRaceCPU, raceCam:false});
-			}
-			chars.push({charN:Math.floor(Math.random()*12), kartN:Math.floor(Math.random()*0x24), controller:((prompt("Type y to gain control of last kart.")=="y")?controlDefault:controlRaceCPU), raceCam:true})
-
-				mainScene = new courseScene(mainNarc, texNarc, 
-				chars, {}, res);
-
-			//var cDir = MKDSCONST.COURSEDIR+MKDSCONST.COURSES[12];
-			//var mainNarc = new narc(lz77.decompress(gameROM.getFile(cDir+".carc")));
-			//var texNarc = new narc(lz77.decompress(gameROM.getFile(cDir+"Tex.carc")));
-
-			//	mainScene2 = new courseScene(mainNarc, texNarc, 
-			//	chars, {}, res);*/
-
-			big();
+			setCanvasSize();
 			render();
 		}
 
@@ -252,7 +224,7 @@
 		function render() {
 			timeSync += Date.now()-lastTime;
 			lastTime = Date.now();
-			big();
+			setCanvasSize();
 
 			gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
 			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT | gl.STENCIL_BUFFER_BIT);
@@ -265,11 +237,7 @@
 			}
 			
 			nitroAudio.tick();
-			//mainScene2.update();
-
 			mainScene.render();
-			//sceneDrawer.drawWithShadow(gl, mainScene2, gl.viewportWidth/2, 0, gl.viewportWidth/2, gl.viewportHeight)
-
 			window.requestAnimationFrame(render);
 		}
 
@@ -375,7 +343,7 @@
 
 		function initGL(canvas) {
 			try {
-				var gl = canvas.getContext('webgl', {premultipliedAlpha: false, stencil: true, antialias: !isMobile})// || canvas.getContext("experimental-webgl");
+				var gl = canvas.getContext("webgl", {premultipliedAlpha: false, stencil: true, antialias: !isMobile})// || canvas.getContext("experimental-webgl");
 				gl.clearColor(0,0,0,1);
 				gl.clear(gl.COLOR_BUFFER_BIT);
 				gl.enable(gl.DEPTH_TEST);
@@ -388,7 +356,7 @@
 			}
 		}
 
-		function big() {
+		function setCanvasSize() {
 			var element = document.getElementById("canvas3d");
 			var width = (element.clientWidth * (window.devicePixelRatio || 1)) | 0;
 			var height = (element.clientHeight * (window.devicePixelRatio || 1)) | 0;
@@ -410,30 +378,6 @@
 </head>
 
 <body style="margin:0; background-color:black; color: white;">
-
 	<canvas height="720" width="1280" id="canvas3d" style="width:100%; height:100%;"></canvas>
-	<!--
-	<canvas height="720" width="1280" id="canvas"></canvas>
-	<br>
-	<select id="kcls">
-		<option value="airship_course.kcl">airship_course.kcl</option>
-		<option value="bowsers_castle.kcl">bowsers_castle.kcl</option>
-		<option value="cheep_cheep_beach.kcl">cheep_cheep_beach.kcl</option>
-		<option value="delfino.kcl">delfino.kcl</option>
-		<option value="desert.kcl">desert.kcl</option>
-		<option value="figure_8.kcl">figure_8.kcl</option>
-		<option value="luigi_circuit_gcn.kcl">luigi_circuit_gcn.kcl</option>
-		<option value="luigis_mansion.kcl">luigis_mansion.kcl</option>
-		<option value="peach_gardens.kcl">peach_gardens.kcl</option>
-		<option value="tick_tock_clock.kcl">tick_tock_clock.kcl</option>
-		<option value="wario_stadium.kcl">wario_stadium.kcl</option>
-		<option value="yoshi_falls.kcl">yoshi_falls.kcl</option>
-		<option value="block.kcl">block.kcl</option>
-		<option value="mkwii.kcl">mkwii.kcl</option>
-	</select>
-
-	-->
-
 	<input type="file" id="fileIn" style="display:none;">
-
 </body>
