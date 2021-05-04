@@ -440,7 +440,7 @@ window.spa = function(input) {
                 off += 2;
 
             } else {
-                console.log("texture format is none, ignoring")
+                console.warn("texture format is none, ignoring")
                 return canvas;
             }
             img.data.set(col, i*4);

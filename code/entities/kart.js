@@ -711,7 +711,6 @@ window.Kart = function(pos, angle, speed, kartN, charN, controller, scene) {
 					let strength = lerp(0, 0.1, t);
 					if (strength > 0.01)
 						k.controller.rumble(50, strength, 0);
-					console.log(strength);
 				}
 			}
 

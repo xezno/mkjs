@@ -108,7 +108,8 @@ window.nsbmd = function(input) {
 	function parseBones(offset, view, polys, materials, objects, maxStack) {
 		var last;
 		var commands = [];
-		var debug = true;
+		var debug = false;
+		
 		if (debug) console.log("== Begin Parse Bones ==");
 
 		var freeStack = maxStack;

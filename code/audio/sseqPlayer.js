@@ -82,7 +82,6 @@ window.SSEQPlayer = function(sseqHead, sdat, ctx, outputTarget, properties) {
 	t.dead = false;
 
 	t.masterGain = ctx.createGain();
-	console.log("seqvol: "+(sseqHead.vol)/0x7F)
 	t.masterGain.gain.value = (sseqHead.vol*t.volume)/0x7F;
 	t.masterGain.connect((outputTarget != null)?outputTarget:ctx.destination);
 
@@ -173,7 +172,8 @@ window.SSEQPlayer = function(sseqHead, sdat, ctx, outputTarget, properties) {
 	}
 
 	function playNote(thread, velocity, duration, num) {
-		if (thread.wait < 0) console.log("warning - MIDI buffer overflowed! "+thread.wait);
+		if (thread.wait < 0)
+			console.warn("warning - MIDI buffer overflowed! "+thread.wait);
 		velocity /= 127;
 		if (t.bank.bank.instruments == null) return;
 		var inst = t.bank.bank.instruments[thread.program];

@@ -67,7 +67,6 @@ window.sdat = function(input) {
 				relOff += 4;
 			}
 		}
-		console.log(obj);
 		return obj;
 	}
 
@@ -82,7 +81,6 @@ window.sdat = function(input) {
 			off += 16;
 			a.push(obj);
 		}
-		console.log(a);
 		return a;
 	}
 

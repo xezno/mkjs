@@ -129,7 +129,6 @@
 			else
 				hasGamepad = false;
 
-			console.log(`GAMEPAD: ${hasGamepad}`);
 			//not elegant... but whatever
 			mainScene.myKart.controller.setInputAuto();
 		}
@@ -147,7 +146,6 @@
 				.replace(/^\s+at\s+/gm, '')
 				.replace(/^Object.<anonymous>\s*\(/gm, '{anonymous}()@')
 				.split('\n');
-		  	console.log(stack);
 		}
 
 		window.onerror = function(error, h, j) {
@@ -210,7 +208,7 @@
 				}
 			});
 
-			mainScene = new singleScene("mkds/"+window.prompt("Select a course to load. (0 to 31, eg rainbow road = 15)"), 0, res)
+			mainScene = new devScene("mkds/2", 0, res)
 
 			setCanvasSize();
 			render();
@@ -272,7 +270,6 @@
 		}
 
 		function getTouchObj(touch) {
-			console.log('getting obj')
 			for (var i=0; i<touches.length; i++) {
 				var mkTouch = touches[i];
 				if (mkTouch.id == touch.identifier) {

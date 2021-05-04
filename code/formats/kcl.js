@@ -91,8 +91,6 @@ window.kcl = function(input, mkwii) {
 			if (vert[2] > maxz) maxz=vert[2];
 		}
 
-		console.log("minx: "+minx+" maxx: "+maxx+" minz: "+minz+" maxz: "+maxz)
-
 		//var sfx = canvas.width/(maxx-minx);
 		//var sfy = canvas.height/(maxz-minz);
 		//offx = -((minx+maxx)/2);

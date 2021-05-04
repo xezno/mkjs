@@ -13,7 +13,6 @@ window.GraphicTester = function(rom) {
 		var files = resource.list();
 		for (var i=0; i<files.length; i++) {
 			var file = files[i];
-			console.log(path + file);
 			if (file.toLowerCase().endsWith(".carc")) {
 				listRecursive(new narc(lz77.decompress(resource.getFile(file))), path + file);
 			}
@@ -30,7 +29,6 @@ window.GraphicTester = function(rom) {
 		var graphics = files.filter(x => x.toLowerCase().endsWith(".ncgr"));
 		for (var i=0; i<files.length; i++) {
 			var file = files[i];
-			console.log(path + file);
 			if (file.toLowerCase().endsWith(".carc")) {
 				if (/\_..\./.exec(file) != null) continue; //a localization carc (format _us.carc). only scan the main ones. (+us)
 				var mainCarc = new narc(lz77.decompress(resource.getFile(file)));
@@ -191,7 +189,6 @@ window.IngameRes = function(rom) {
 		var files = resource.list();
 		for (var i=0; i<files.length; i++) {
 			var file = files[i];
-			console.log(path + file);
 			if (file.toLowerCase().endsWith(".carc")) {
 				listRecursive(new narc(lz77.decompress(resource.getFile(file))), path + file);
 			}

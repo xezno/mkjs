@@ -72,7 +72,6 @@ window.courseScene = function(mainNarc, texNarc, courseObj, chars, options, game
 	var skyTx = new nsbtx(texNarc.getFile("/course_model_V.nsbtx"), false, true);
 	var staFile = mainNarc.getFile("/course_model_V.nsbta");
 	if (staFile != null) var skyTa = new nsbta(staFile); //can be null
-	console.log("--------- LOADING SKY ---------")
 	var skyMdl = new nsbmd(mainNarc.getFile("/course_model_V.nsbmd"));
 
 	var sky = new nitroModel(skyMdl, skyTx)
@@ -118,12 +117,20 @@ window.courseScene = function(mainNarc, texNarc, courseObj, chars, options, game
 		}
 
 		var lvlMat = mat4.scale(mat4.create(), mvMatrix, [1/64, 1/64, 1/64]);//[2, 2, 2]);
-		course.setFrame(frame);
-		nitroRender.forceFlatNormals = true;
-		nitroRender.setLightIntensities(0);
-		course.draw(lvlMat, pMatrix);
-		nitroRender.setLightIntensities();
-		nitroRender.forceFlatNormals = false;
+
+		// some courses (e.g. cheep cheep beach) have baked shadows
+		// these are typically built directly into the level mesh itself, which makes it hard to remove them
+		// there's probably some clever solution that prevents these from being drawn, but until that gets sorted out
+		// we'll just draw the non-baked parts (karts etc.) and rely on the baked lighting for the rest
+		var draw = (shadow) ? !courseObj.hasBakedShadows : true;
+		if (draw) {
+			course.setFrame(frame);
+			nitroRender.forceFlatNormals = true;
+			nitroRender.setLightIntensities(0);
+			course.draw(lvlMat, pMatrix);
+			nitroRender.setLightIntensities();
+			nitroRender.forceFlatNormals = false;
+		}
 
 		var transE = [];
 
@@ -139,10 +146,12 @@ window.courseScene = function(mainNarc, texNarc, courseObj, chars, options, game
 		for (var i=0; i<scn.karts.length; i++) if (scn.karts[i].active) scn.karts[i].drawWheels(mvMatrix, pMatrix, gl);
 		for (var i=0; i<scn.karts.length; i++) if (scn.karts[i].active) scn.karts[i].drawChar(mvMatrix, pMatrix, gl);
 
-		for (var i=0; i<scn.entities.length; i++) {
-			var e = scn.entities[i];
-			if (e.transparent) transE.push(e);
-			else e.draw(mvMatrix, pMatrix, gl);
+		if (draw) {
+			for (var i=0; i<scn.entities.length; i++) {
+				var e = scn.entities[i];
+				if (e.transparent) transE.push(e);
+				else e.draw(mvMatrix, pMatrix, gl);
+			}
 		}
 
 		nitroRender.setLightIntensities(0);

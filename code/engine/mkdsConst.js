@@ -16,7 +16,7 @@ window.MKDSCONST = new (function() {
 	this.COURSES = [ //in order of course id, nitro through retro
 		{name:"cross_course", music: 74},
 		{name:"bank_course", music: 16},
-		{name:"beach_course", music: 15},
+		{name:"beach_course", music: 15, lightHeight: 0, lightAngle: 200/180, hasBakedShadows: true}, // baked shadows from nb_TreeKage etc
 		{name:"mansion_course", music: 21, lightHeight: 20/180, lightAngle: 160/180},
 
 		{name:"desert_course", music: 38, lightHeight: 40/180},
